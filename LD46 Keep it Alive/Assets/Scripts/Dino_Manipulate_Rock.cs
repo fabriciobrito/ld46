@@ -7,8 +7,8 @@ public class Dino_Manipulate_Rock : MonoBehaviour
     public float yOffsetRockCarrying = 0.7f;
     public float xOffsetRockCarrying = -0.7f;
 
-    private GameObject rockOnRange;
-    private GameObject rockHolding;
+    public GameObject rockOnRange;
+    public GameObject rockHolding;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +28,14 @@ public class Dino_Manipulate_Rock : MonoBehaviour
                 // Solta habilitando ação da gravidade na pedra
                 rockHolding.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 rockHolding = null;
+                return;
             }
-            else
+            
+            // Se houver uma pedra ao alcance
+            if (rockOnRange != null)
             {
-                // Se houver uma pedra ao alcance
-                if (rockOnRange != null)
-                {
-                    rockHolding = rockOnRange;
-                    rockOnRange = null;
-                }
+                rockHolding = rockOnRange;
+                rockOnRange = null;
             }
         }
 
@@ -53,11 +52,13 @@ public class Dino_Manipulate_Rock : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Rock"))
         {
-            rockOnRange = collision.gameObject;
+            if(collision.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Kinematic)
+                if(collision.gameObject != rockHolding)
+                    rockOnRange = collision.gameObject;
         }
     }
 

@@ -20,13 +20,15 @@ public class Calculate_Mass : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic)
-            totalMass += collision.gameObject.GetComponent<Rigidbody2D>().mass * 5;
+        if(collision.CompareTag("Rock"))
+            if (collision.gameObject.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic)
+                totalMass += collision.gameObject.GetComponent<Rigidbody2D>().mass * 5;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic)
-            totalMass -= collision.gameObject.GetComponent<Rigidbody2D>().mass * 5;
+        if (collision.CompareTag("Rock"))
+            if (collision.gameObject.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic)
+                totalMass -= collision.gameObject.GetComponent<Rigidbody2D>().mass * 5;
     }
 }

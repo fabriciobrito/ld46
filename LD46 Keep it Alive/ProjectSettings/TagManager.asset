@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rock
+  - Platform
+  - Ground
+  - BabyDino
   layers:
   - Default
   - TransparentFX
