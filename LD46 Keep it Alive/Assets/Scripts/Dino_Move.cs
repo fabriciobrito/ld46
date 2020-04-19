@@ -18,9 +18,16 @@ public class Dino_Move : MonoBehaviour
         float direction = 0;
 
         if (Input.GetKey(KeyCode.RightArrow))
+        {
             direction = 1.0f;
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+            
         if (Input.GetKey(KeyCode.LeftArrow))
+        {
             direction = -1.0f;
+            GetComponent<SpriteRenderer>().flipX = false;
+        }   
 
         transform.position = new Vector3(
             transform.position.x + Time.deltaTime * direction * velocity,

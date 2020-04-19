@@ -7,28 +7,25 @@ public class Joint_Friction : MonoBehaviour
     [Tooltip("Multiplier of the angular velocity for the torque to apply.")]
     public float Friction = 0.4f;
 
-    private HingeJoint _hinge;
-    private Rigidbody _thisBody;
-    private Rigidbody _connectedBody;
-    private Vector3 _axis;  //local space
+    private HingeJoint2D _hinge;
+    private Rigidbody2D _thisBody;
+    private Rigidbody2D _connectedBody;
 
     // Use this for initialization
     void Start()
     {
-        _hinge = GetComponent<HingeJoint>();
+        _hinge = GetComponent<HingeJoint2D>();
         _connectedBody = _hinge.connectedBody;
-        _axis = _hinge.axis;
 
-        _thisBody = GetComponent<Rigidbody>();
+        _thisBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        var angularV = _hinge.velocity;
+        var angularV = _hinge.jointSpeed;
         //Debug.Log("angularV " + angularV);
-        var worldAxis = transform.TransformVector(_axis);
-        var worldTorque = Friction * angularV * worldAxis;
+        var worldTorque = Friction * angularV;
 
         _thisBody.AddTorque(-worldTorque);
         _connectedBody.AddTorque(worldTorque);

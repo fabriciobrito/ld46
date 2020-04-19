@@ -43,8 +43,10 @@ public class Dino_Manipulate_Rock : MonoBehaviour
         // Se estiver segurando a pedra, move junto com o personagem
         if (rockHolding)
         {
+            // Verifica se o personagem está indo pra direita ou esquerda pra acertar o offset X
+            float inv = GetComponent<SpriteRenderer>().flipX ? 1.0f : -1.0f;
             rockHolding.transform.position = new Vector3(
-                transform.position.x + xOffsetRockCarrying,
+                transform.position.x + xOffsetRockCarrying*inv,
                 transform.position.y + yOffsetRockCarrying,
                 rockHolding.transform.position.z
                 );
