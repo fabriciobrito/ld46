@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Calculate_Mass.cs" />
     <Compile Include="Assets\Scripts\Check_Baby_Dino_Ground.cs" />
     <Compile Include="Assets\Scripts\Check_Balance.cs" />
+    <Compile Include="Assets\Scripts\Cloud_Movement.cs" />
     <Compile Include="Assets\Scripts\Dino_Manipulate_Rock.cs" />
     <Compile Include="Assets\Scripts\Dino_Move.cs" />
     <Compile Include="Assets\Scripts\Joint_Friction.cs" />

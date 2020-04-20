@@ -10,6 +10,8 @@ TagManager:
   - BabyDino
   - Reload
   - Manager
+  - Title
+  - SortLevel
   layers:
   - Default
   - TransparentFX

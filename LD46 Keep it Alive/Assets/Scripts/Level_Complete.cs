@@ -12,10 +12,13 @@ public class Level_Complete : MonoBehaviour
 
     public string[] congrats;
 
+    public int level = 1;
+    
     public int successCount = 0;
+
     private bool isWaitingLevelLoad = false;
 
-    // Make sure this script is not destroyed on level reload and keep success count
+    // Make sure this script is not destroyed on level reload and keep success/level count
     private void Awake()
     {
         if (instance == null)
@@ -34,7 +37,11 @@ public class Level_Complete : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GameObject title = GameObject.FindGameObjectWithTag("Title");
+        GameObject scene = GameObject.FindGameObjectWithTag("SortLevel");
+        string levelType = scene.GetComponent<Sort_Level_Initial_Mass>().levelType.ToString();
+
+        title.GetComponent<TMPro.TextMeshProUGUI>().text = "Level " + level + " (" + levelType + ")";
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,7 +59,7 @@ public class Level_Complete : MonoBehaviour
     {
         isWaitingLevelLoad = true;
         yield return new WaitForSeconds(WaitTillLoadLevel);
-
+        level++;
         if (successCount < congrats.Length)
             RestartLevel();
         else
@@ -72,7 +79,8 @@ public class Level_Complete : MonoBehaviour
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
-            nextSceneIndex = 0;
-        SceneManager.LoadScene(nextSceneIndex);
+            SceneManager.LoadScene("Level_1");
+        else
+            SceneManager.LoadScene(nextSceneIndex);
     }
 }
