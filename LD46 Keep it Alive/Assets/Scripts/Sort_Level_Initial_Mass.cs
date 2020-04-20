@@ -10,6 +10,11 @@ public class Sort_Level_Initial_Mass : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    private void Awake()
+    {
         int sum = Random.Range(8, 15);
         initialRock.GetComponent<Rock_Mass>().mass = (float)sum;
 
@@ -31,4 +36,5 @@ public class Sort_Level_Initial_Mass : MonoBehaviour
     {
         
     }
+    
 }

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Level_Complete : MonoBehaviour
 {
+    public float WaitTillLoadLevel = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,21 @@ public class Level_Complete : MonoBehaviour
     {
         if (collision.CompareTag("BabyDino"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameObject message = GameObject.FindGameObjectWithTag("Finish");
+            message.GetComponent<TMPro.TextMeshProUGUI>().text = "Well Done!";
+            message.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+            StartCoroutine(WaitAndLoadNextLevel());
         }
+    }
+
+    IEnumerator WaitAndLoadNextLevel()
+    {
+        yield return new WaitForSeconds(WaitTillLoadLevel);
+        RestartLevel();
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

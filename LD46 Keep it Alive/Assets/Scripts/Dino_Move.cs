@@ -6,6 +6,9 @@ public class Dino_Move : MonoBehaviour
 {
     public float velocity = 5.0f;
 
+    public float min_X_pos = -6.5f;
+    public float max_X_pos = 6.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +30,13 @@ public class Dino_Move : MonoBehaviour
         {
             direction = -1.0f;
             GetComponent<SpriteRenderer>().flipX = false;
-        }   
+        }
 
         transform.position = new Vector3(
-            transform.position.x + Time.deltaTime * direction * velocity,
+            Mathf.Clamp(transform.position.x + Time.deltaTime * direction * velocity, min_X_pos, max_X_pos),
             transform.position.y,
             transform.position.z);
+
+        
     }
 }

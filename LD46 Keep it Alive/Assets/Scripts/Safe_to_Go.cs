@@ -46,7 +46,7 @@ public class Safe_to_Go : MonoBehaviour
         }
 
         if (walk)
-            transform.position = new Vector3(
+            transform.parent.position = new Vector3(
                 transform.position.x + Time.deltaTime * speed,
                 transform.position.y,
                 transform.position.z
