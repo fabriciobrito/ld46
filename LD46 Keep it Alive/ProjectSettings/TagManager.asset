@@ -8,6 +8,8 @@ TagManager:
   - Platform
   - Ground
   - BabyDino
+  - Reload
+  - Manager
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,8 @@ public class Check_Baby_Dino_Ground : MonoBehaviour
     public bool isOnGround = true;
     public bool isOnPlatform = false;
 
+    private float fallSpeed = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +21,11 @@ public class Check_Baby_Dino_Ground : MonoBehaviour
     {
         if(!isOnGround && !isOnPlatform)
         {
-            GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        }
-        else
-        {
-            if(GetComponentInParent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic)
-                GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            transform.parent.position = new Vector3(
+                transform.parent.position.x,
+                transform.parent.position.y - Time.deltaTime * fallSpeed,
+                transform.parent.position.z
+                );
         }
     }
 
@@ -50,10 +51,5 @@ public class Check_Baby_Dino_Ground : MonoBehaviour
             isOnGround = true;
         if (collision.CompareTag("Platform"))
             isOnPlatform = true;
-    }
-
-    private void OnBecameInvisible()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

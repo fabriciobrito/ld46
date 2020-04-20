@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Dino_Move.cs" />
     <Compile Include="Assets\Scripts\Joint_Friction.cs" />
     <Compile Include="Assets\Scripts\Level_Complete.cs" />
+    <Compile Include="Assets\Scripts\Restart_Level.cs" />
     <Compile Include="Assets\Scripts\Rock_Mass.cs" />
     <Compile Include="Assets\Scripts\Rock_Summon.cs" />
     <Compile Include="Assets\Scripts\Safe_to_Go.cs" />
